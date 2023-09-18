@@ -14,7 +14,7 @@ public class InterParkScheduled {
     private DaemonService daemonService;
 
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "*/5 * * * * *")
     public void health() throws MalformedURLException {
 
         daemonService.telegram("[서비스 정상 기동중]");

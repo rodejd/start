@@ -15,13 +15,13 @@ import java.util.Date;
 @Slf4j
 public class DaemonService {
 
-    public void callAPi() throws MalformedURLException {
+    public void callAPi(String url) throws MalformedURLException {
 
         try {
-            URL url = new URL("https://api-ticketfront.interpark.com/v1/goods/21005592/playSeq/PlaySeq/751/REMAINSEAT");
+            URL tempUrl = new URL(url);
 
             // HttpURLConnection을 열고 설정합니다.
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) tempUrl.openConnection();
             conn.setRequestMethod("GET"); // HTTP GET 요청을 보냅니다.
 
             // 응답 본문을 읽어옵니다.
@@ -34,13 +34,28 @@ public class DaemonService {
             }
             in.close();
 
+
             ObjectMapper objectMapper =
                     new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             InterParkCampingRemainVo interParkCampingRemainVo = objectMapper.readValue(response.toString(), InterParkCampingRemainVo.class);
             for(int i = 0; i < interParkCampingRemainVo.getData().getRemainSeat().size(); i++){
                 if(interParkCampingRemainVo.getData().getRemainSeat().get(i).getSeatGrade().equals("1") || interParkCampingRemainVo.getData().getRemainSeat().get(i).getSeatGrade().equals("2")){
                     if(!interParkCampingRemainVo.getData().getRemainSeat().get(i).getRemainCnt().equals("0")){
-                        telegram( interParkCampingRemainVo.getData().getRemainSeat().get(i).getSeatGradeName() + " 잔여 자리 = " + interParkCampingRemainVo.getData().getRemainSeat().get(i).getRemainCnt());
+                        String tempDate  = "";
+                        switch(interParkCampingRemainVo.getData().getRemainSeat().get(i).getPlaySeq()){
+                            case "745":
+                                tempDate = "14일";
+                                break;
+                            case "751":
+                                tempDate = "21일";
+                                break;
+                            case "758":
+                                tempDate = "28일";
+                                break;
+                        };
+                        telegram( "===================자리 발생====================");
+                        telegram( "[ " + tempDate + "]"+interParkCampingRemainVo.getData().getRemainSeat().get(i).getSeatGradeName() + " 잔여 자리 = " + interParkCampingRemainVo.getData().getRemainSeat().get(i).getRemainCnt());
+                        telegram( "===================빨리 빨리====================");
                     }
                 }
             }

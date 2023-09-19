@@ -14,34 +14,26 @@ public class InterParkScheduled {
     private DaemonService daemonService;
 
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 0 0/1 * * *")
     public void health() throws MalformedURLException {
-
-        daemonService.telegram("[서비스 정상 기동중]");
-
+        daemonService.telegram("[캠핑 알림 서비스 정상 기동중]");
     }
 
 
-    @Scheduled(cron = "*/2 * * * * *")
+    @Scheduled(cron = "*/10 * * * * *")
     public void interPark14() throws MalformedURLException {
-
         daemonService.callAPi("https://api-ticketfront.interpark.com/v1/goods/21005592/playSeq/PlaySeq/745/REMAINSEAT");
-
     }
 
-    @Scheduled(cron = "*/3 * * * * *")
+    @Scheduled(cron = "*/15 * * * * *")
     public void interPark21() throws MalformedURLException {
-
         daemonService.callAPi("https://api-ticketfront.interpark.com/v1/goods/21005592/playSeq/PlaySeq/751/REMAINSEAT");
-
     }
 
 
-    @Scheduled(cron = "*/5 * * * * *")
+    @Scheduled(cron = "*/13 * * * * *")
     public void interPark28() throws MalformedURLException {
-
         daemonService.callAPi("https://api-ticketfront.interpark.com/v1/goods/21005592/playSeq/PlaySeq/758/REMAINSEAT");
-
     }
 
 }

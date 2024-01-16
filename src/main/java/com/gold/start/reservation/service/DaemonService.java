@@ -1,7 +1,8 @@
-package com.gold.start;
+package com.gold.start.reservation.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gold.start.reservation.vo.InterParkCampingRemainVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import java.net.HttpURLConnection;
@@ -9,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Date;
 
 @Service
 @Slf4j

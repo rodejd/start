@@ -43,8 +43,8 @@ public class DaemonService {
                     if(!interParkCampingRemainVo.getData().getRemainSeat().get(i).getRemainCnt().equals("0")){
                         String tempDate  = "";
                         switch(interParkCampingRemainVo.getData().getRemainSeat().get(i).getPlaySeq()){
-                            case "745":
-                                tempDate = "14일";
+                            case "928":
+                                tempDate = "20일";
                                 break;
                             case "751":
                                 tempDate = "21일";

@@ -20,6 +20,11 @@ public class InterParkScheduled {
         daemonService.telegram("[캠핑 알리미 서버 정상 기동중]");
     }
 
+    @Scheduled(cron = "*/10 * * * * *")
+    public void healthTest() throws MalformedURLException {
+        daemonService.telegram("[테스트]");
+    }
+
 
     @Scheduled(cron = "*/10 * * * * *")
     public void interPark14() throws MalformedURLException {

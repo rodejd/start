@@ -21,12 +21,6 @@ public class InterParkScheduled {
     }
 
     @Scheduled(cron = "*/10 * * * * *")
-    public void healthTest() throws MalformedURLException {
-        daemonService.telegram("[테스트]");
-    }
-
-
-    @Scheduled(cron = "*/10 * * * * *")
     public void interPark14() throws MalformedURLException {
         daemonService.callAPi("https://api-ticketfront.interpark.com/v1/goods/21005592/playSeq/PlaySeq/928/REMAINSEAT");
     }

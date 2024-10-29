@@ -1,8 +1,7 @@
 package com.gold.start;
 
 
-import com.gold.start.study.CommonUtils;
-import com.gold.start.study.StudyVo;
+import com.gold.start.study.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +17,13 @@ public class StartApplication {
 
 
         StudyVo vo = StudyVo.getInstance();
+
+        Factory factory = FactoryChild::new;
+        Factory factory2 =
+
+        factory.createFactory();
+        factory2.createFactory();
+
 
 
         System.out.println(CommonUtils.toJson(vo));

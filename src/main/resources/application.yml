@@ -1,0 +1,38 @@
+
+spring:
+  profiles:
+    active: dev # ?? ???? ?? (?? ??)
+
+# ?? ??
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate # ?? ????? update ?? validate ?? none ??
+    open-in-view: false # Open Session In View ?? ???? (??)
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+
+# ?? ?? (dev) ??
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mariadb://localhost:3306/devdb
+    username: devuser
+    password: devpassword
+
+# ?? ?? (prod) ??
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:mariadb://prod-db-server:3306/proddb
+    username: produser
+    password: prodpassword
+  jpa:
+    hibernate:
+      ddl-auto: none # ?? ????? ??? ?? ?? ????

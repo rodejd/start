@@ -25,6 +25,7 @@ public class Member {
         this.pwd = pwd;
     }
 
+
     // Getter & Setter
     public Long getId() {
         return id;
